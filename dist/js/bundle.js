@@ -35615,6 +35615,9 @@ angular.module('Annotator.App',['ngAnimate'])
     ];
     
     $scope.keypressed=function(e){
+        if(e.ctrlKey || e.altKey){
+            return;
+        }
         $log.debug('keyCode',e.keyCode);
         var matches=$scope.annotations.filter(function(a){return a.keyCode===e.keyCode;});
         if(matches.length>0){
