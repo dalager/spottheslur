@@ -8,9 +8,22 @@
     <link rel="stylesheet" href="/css/bundle.css" />
     </head>
     <body ng-app="Annotator.App">
-        <h1>Annotatr</h1>
+        <div class="container">
+            
+        <h1>Annotator</h1>
         <div ng-controller="MainController">
-                
+            
+            <div class="tweet">
+                {{selectedTweet.tweet}}
+            </div>
+            
+            <div class="annotations">
+                <div class="btn" ng-repeat="annotation in annotations">
+                    {{annotation.title}} ({{annotation.shortcut}})
+<div class="desc">{{annotation.text}}</div>                       
+                 </div>
+            </div>    
+        </div>
         </div>
         <script src="/js/bundle.js"></script>
     </body>
