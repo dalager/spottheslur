@@ -13,12 +13,12 @@
         <h1>Annotator</h1>
         <div>
             
-            <div class="tweet">
-                {{selectedTweet.tweet}}
+            <div class="tweet"  >
+                <div class="content" ng-show="selectedTweet">{{selectedTweet.tweet}}</div>
             </div>
             
             <div class="annotations">
-                <div class="btn" ng-repeat="annotation in annotations" ng-click="select(annotation)">
+                <div class="btn rotate" ng-repeat="annotation in annotations" ng-click="select(annotation)">
                     {{annotation.title}} ({{annotation.shortcut}})
 <div class="desc">{{annotation.text}}</div>                       
                  </div>

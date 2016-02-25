@@ -1,4 +1,4 @@
-angular.module('Annotator.App',[])
+angular.module('Annotator.App',['ngAnimate'])
 .service('tweetService',['$log',function($log){
    var getTweets = function(){
        $log.debug('getting tweets');
@@ -20,14 +20,18 @@ angular.module('Annotator.App',[])
    };
 }])
 
-.controller('MainController',['$scope','tweetService','$log',function($scope,tweetService,$log){
+.controller('MainController',['$scope','tweetService','$log','$timeout',function($scope,tweetService,$log,$timeout){
     var tweets = tweetService.getTweets();
     $log.debug('got ',tweets.length);
     
     $scope.selectedTweet={id:null,tweet:''};
     var takeNext = function(){
         if(tweets.length>0){
-            $scope.selectedTweet = tweets.shift();
+            $scope.selectedTweet = null;
+            $timeout(function(){
+                $log.debug('timeout');
+                $scope.selectedTweet = tweets.shift();
+            },700);
         }else{
             //get new tweets
         }
@@ -56,8 +60,4 @@ angular.module('Annotator.App',[])
     $scope.select=function(annotation){
         postChoice(annotation);
     };
-    
-    
-    
-    
 }]);
