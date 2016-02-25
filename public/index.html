@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"   ng-app="Annotator.App">
 <head>
     <meta encoding="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,18 +7,18 @@
 
     <link rel="stylesheet" href="/css/bundle.css" />
     </head>
-    <body ng-app="Annotator.App">
-        <div class="container">
+    <body  ng-controller="MainController"  ng-keyup="keypressed($event)">
+        <div class="container"">
             
         <h1>Annotator</h1>
-        <div ng-controller="MainController">
+        <div>
             
             <div class="tweet">
                 {{selectedTweet.tweet}}
             </div>
             
             <div class="annotations">
-                <div class="btn" ng-repeat="annotation in annotations">
+                <div class="btn" ng-repeat="annotation in annotations" ng-click="select(annotation)">
                     {{annotation.title}} ({{annotation.shortcut}})
 <div class="desc">{{annotation.text}}</div>                       
                  </div>

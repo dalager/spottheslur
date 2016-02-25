@@ -35,11 +35,27 @@ angular.module('Annotator.App',[])
     takeNext();
         
     $scope.annotations = [
-        {code:'A',title:'Racism',text:'Tweet is racist',shortcut:'r'},
-        {code:'B',title:'Sexism',text:'Tweet is sexist',shortcut:'s'},
-        {code:'C',title:'Both',text:'Tweet is both racist and sexist',shortcut:'b'},
+        {code:'A',title:'Racism',text:'Tweet is racist',shortcut:'r',keyCode:82},
+        {code:'B',title:'Sexism',text:'Tweet is sexist',shortcut:'s',keyCode:83},
+        {code:'C',title:'Both',text:'Tweet is both racist and sexist',shortcut:'b',keyCode:66},
     ];
     
+    $scope.keypressed=function(e){
+        var matches=$scope.annotations.filter(function(a){return a.keyCode===e.keyCode;});
+        if(matches.length>0){
+            postChoice(matches[0]);
+        }
+    };
+    
+    var postChoice=function(annotation){
+        $log.debug('picked ', annotation);
+        // send away!
+        takeNext();
+    };
+    
+    $scope.select=function(annotation){
+        postChoice(annotation);
+    };
     
     
     
