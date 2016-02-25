@@ -1,0 +1,21 @@
+{
+  "name": "annotator",
+  "description": "tweet annotator",
+  "main": "app.js",
+  "authors": [
+    "Christian Dalager <christian@dalager.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [
+    "amd"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
