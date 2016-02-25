@@ -35609,9 +35609,13 @@ angular.module('Annotator.App',['ngAnimate'])
         {code:'A',title:'Racism',text:'Tweet is racist',shortcut:'r',keyCode:82},
         {code:'B',title:'Sexism',text:'Tweet is sexist',shortcut:'s',keyCode:83},
         {code:'C',title:'Both',text:'Tweet is both racist and sexist',shortcut:'b',keyCode:66},
+        {code:'D',title:'None',text:'Tweet is neither racist nor sexist',shortcut:'n',keyCode:78},
+        {code:'E',title:'Noise',text:'Tweet is not in English',shortcut:'z',keyCode:90},
+        {code:'F',title:'Skip',text:'Too hard. Give me another!',shortcut:'x',keyCode:88},
     ];
     
     $scope.keypressed=function(e){
+        $log.debug('keyCode',e.keyCode);
         var matches=$scope.annotations.filter(function(a){return a.keyCode===e.keyCode;});
         if(matches.length>0){
             postChoice(matches[0]);
@@ -35620,6 +35624,8 @@ angular.module('Annotator.App',['ngAnimate'])
     
     var postChoice=function(annotation){
         $log.debug('picked ', annotation);
+        annotation.picked=true;
+        $timeout(function(){annotation.picked=false;},400);
         // send away!
         takeNext();
     };

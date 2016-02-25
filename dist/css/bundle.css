@@ -7,8 +7,9 @@ body h1 {
   color: #fff;
 }
 body .container {
-  left: 50px;
+  left: 30px;
   position: absolute;
+  width: 500px;
 }
 .btn {
   float: left;
@@ -20,13 +21,21 @@ body .container {
   width: 100px;
   cursor: pointer;
   text-align: center;
+  -webkit-transition: 1s ease;
+  /*to only change opacity*/
+  /*-webkit-transition: opacity 1s linear*/
+  -moz-transition: 1s ease;
+  -o-transition: 1s ease;
+  transition: 1s ease;
 }
 .btn .desc {
   font-size: 0.8rem;
   padding-top: 4px;
 }
+.pulse {
+  background-color: #F00;
+}
 .tweet {
-  width: 500px;
   height: 230px;
   font-size: 2rem;
   margin-bottom: 20px;
@@ -52,63 +61,18 @@ body .container {
     height: 150px;
   }
 }
-.ng-hide-add {
+@media (max-width: 400px) {
+  .tweet {
+    width: 60%;
+    font-size: 1.0rem;
+    height: 150px;
+  }
+}
+.tweet .ng-hide-add {
   animation: 0.5s rollOut ease;
 }
-.ng-hide-remove {
+.tweet .ng-hide-remove {
   animation: 0.5s rollIn ease;
-}
-@-webkit-keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@-webkit-keyframes fadeOutDownBig {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-    -webkit-transform: translate3d(0, 2000px, 0);
-    transform: translate3d(0, 2000px, 0);
-  }
-}
-@keyframes fadeOutDownBig {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-    -webkit-transform: translate3d(0, 2000px, 0);
-    transform: translate3d(0, 2000px, 0);
-  }
 }
 @-webkit-keyframes rollIn {
   from {

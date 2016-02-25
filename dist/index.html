@@ -18,7 +18,7 @@
             </div>
             
             <div class="annotations">
-                <div class="btn rotate" ng-repeat="annotation in annotations" ng-click="select(annotation)">
+                <div class="btn" ng-class="{pulse:annotation.picked}" ng-repeat="annotation in annotations" ng-click="select(annotation)">
                     {{annotation.title}} ({{annotation.shortcut}})
 <div class="desc">{{annotation.text}}</div>                       
                  </div>
