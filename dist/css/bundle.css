@@ -19,6 +19,7 @@ body .container {
   background-color: #fff;
   margin: 4px;
   width: 100px;
+  height: 66px;
   cursor: pointer;
   text-align: center;
   -webkit-transition: 1s ease;
@@ -31,6 +32,11 @@ body .container {
 .btn .desc {
   font-size: 0.8rem;
   padding-top: 4px;
+}
+.sessionCounter {
+  font-size: 3rem;
+  color: #fff;
+  font-weight: bold;
 }
 .pulse {
   background-color: #F00;

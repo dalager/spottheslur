@@ -58,6 +58,7 @@ angular.module('Annotator.App', ['ngAnimate'])
 
     .controller('MainController', ['$scope', 'tweetService', '$log', '$timeout', function ($scope, tweetService, $log, $timeout) {
         var tweets = [];
+        $scope.sessionCounter = 0;
         var takeNext = function () {
                 if (tweets.length > 0) {
                     $scope.selectedTweet = null;
@@ -66,27 +67,30 @@ angular.module('Annotator.App', ['ngAnimate'])
                         $scope.selectedTweet = tweets.shift();
                     }, 700);
                 } else {
-                    //get new tweets
+                   getNextbatch();
                 }
             };        
-                     $scope.selectedTweet = { id: null, tweet: '' };
+        $scope.selectedTweet = { id: null, tweet: '' };
 
-        tweetService.getTweets().then(function (data) {
-            $log.debug('got ', data.length);
-            tweets=data;
-            takeNext();
-        });
+        var getNextbatch = function(){
+            tweetService.getTweets().then(function (data) {
+                $log.debug('got ', data.length);
+                tweets=data;
+                takeNext();
+            });
+        };
+        getNextbatch();
             
 
 
 
 
         $scope.annotations = [
-            { code: 'A', title: 'Racism', text: 'Tweet is racist', shortcut: 'r', keyCode: 82 },
-            { code: 'B', title: 'Sexism', text: 'Tweet is sexist', shortcut: 's', keyCode: 83 },
-            { code: 'C', title: 'Both', text: 'Tweet is both racist and sexist', shortcut: 'b', keyCode: 66 },
-            { code: 'D', title: 'None', text: 'Tweet is neither racist nor sexist', shortcut: 'n', keyCode: 78 },
-            { code: 'E', title: 'Noise', text: 'Tweet is not in English', shortcut: 'z', keyCode: 90 },
+            { code: 'Racism', title: 'Racism', text: 'Tweet is racist', shortcut: 'r', keyCode: 82 },
+            { code: 'Sexism', title: 'Sexism', text: 'Tweet is sexist', shortcut: 's', keyCode: 83 },
+            { code: 'Both', title: 'Both', text: 'Tweet is both racist and sexist', shortcut: 'b', keyCode: 66 },
+            { code: 'Neither', title: 'None', text: 'Tweet is neither racist nor sexist', shortcut: 'n', keyCode: 78 },
+            { code: 'Noise', title: 'Noise', text: 'Tweet is not in English', shortcut: 'z', keyCode: 90 },
             { code: 'F', title: 'Skip', text: 'Too hard. Give me another!', shortcut: 'x', keyCode: 88 },
         ];
 
@@ -106,10 +110,13 @@ angular.module('Annotator.App', ['ngAnimate'])
             annotation.picked = true;
             $timeout(function () { annotation.picked = false; }, 400);
             // send away!
-            
-            tweetService.annotateTweet($scope.selectedTweet._id,annotation.code).then(function(){
-                console.log('annotated!');
-            }).catch(function(err){console.error(err);});
+            if(annotation.code!=='F'){
+                tweetService.annotateTweet($scope.selectedTweet._id,annotation.code).then(function(){
+                    console.log('annotated!');
+                    $scope.sessionCounter++;
+                }).catch(function(err){console.error(err);});
+                
+            }
             
             
             takeNext();
