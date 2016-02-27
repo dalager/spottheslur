@@ -1,13 +1,21 @@
 var express = require('express');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+var helmet = require('helmet');
+
 
 var app = express();
+app.use(helmet.hidePoweredBy());
 
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
 
 app.use(express.static('dist'));
 app.use(bodyParser.json());
+
+
+
+
+
 
 app.post('/annotate',function(req,res){
     console.log(req.body);
