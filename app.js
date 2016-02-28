@@ -38,7 +38,7 @@ app.get('/next',function(req,res){
         assert.equal(null, err);
         var cursor = db.collection('web')
             .find({'Annotation':'No'},{'text':1})
-            .limit(50);
+            .limit(3);
 
         var tweets = [];
         cursor.each(function(err,doc){
