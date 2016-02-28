@@ -91,7 +91,7 @@ angular.module('Annotator.App', ['ngAnimate'])
             { code: 'Both', title: 'Both', text: 'Tweet is both racist and sexist', shortcut: 'b', keyCode: 66 },
             { code: 'Neither', title: 'None', text: 'Tweet is neither racist nor sexist', shortcut: 'n', keyCode: 78 },
             { code: 'Noise', title: 'Noise', text: 'Tweet is not in English', shortcut: 'z', keyCode: 90 },
-            { code: 'F', title: 'Skip', text: 'Too hard. Give me another!', shortcut: 'x', keyCode: 88 },
+            { code: 'Skipped', title: 'Skip', text: 'Too hard. Give me another!', shortcut: 'x', keyCode: 88 },
         ];
 
         $scope.keypressed = function (e) {
@@ -110,13 +110,11 @@ angular.module('Annotator.App', ['ngAnimate'])
             annotation.picked = true;
             $timeout(function () { annotation.picked = false; }, 400);
             // send away!
-            if(annotation.code!=='F'){
-                tweetService.annotateTweet($scope.selectedTweet._id,annotation.code).then(function(){
-                    console.log('annotated!');
-                    $scope.sessionCounter++;
-                }).catch(function(err){console.error(err);});
+            tweetService.annotateTweet($scope.selectedTweet._id,annotation.code).then(function(){
+                console.log('annotated!');
+                $scope.sessionCounter++;
+            }).catch(function(err){console.error(err);});
                 
-            }
             
             
             takeNext();
