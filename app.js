@@ -56,6 +56,6 @@ app.get('/next',function(req,res){
 });
 
 
-app.listen(3000, function () {
-  console.log('Annotator on port 3000!');
+app.listen(8000, function () {
+  console.log('Spot the slur on port 8000!');
 });
