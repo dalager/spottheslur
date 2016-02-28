@@ -51,8 +51,7 @@ module.exports = function (grunt) {
 
                 },
                 files: {
-                    'public/css/main.css': 'public/css/main.less',
-                    'public/css/print.css': 'public/css/print.less'
+                    'public/css/main.css': 'public/css/main.less'
                 }
             }
         },
