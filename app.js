@@ -36,9 +36,12 @@ app.get('/next',function(req,res){
     var url = 'mongodb://localhost:27017/thesis';
     MongoClient.connect(url, function(err, db) {
         assert.equal(null, err);
+        
+        var skip = Math.floor(Math.random() * (1000 - 0)) + 0;
         var cursor = db.collection('web')
             .find({'Annotation':'No'},{'text':1})
-            .limit(1);
+            .skip(skip)
+            .limit(10);
 
         var tweets = [];
         cursor.each(function(err,doc){
